@@ -61,4 +61,26 @@ describe("Ballroom API Routes", () => {
     expect(res.body).toEqual(response);
   });
 
+  it("POST /ballroom/calculate-partners should return 500 if handler throws", async () => {
+    // Mock calculatePartners to throw an error
+    jest.resetModules();
+    jest.doMock("./ballroomHandlers", () => ({
+      calculatePartners: () => {
+        throw new Error("Test error");
+      }
+    }));
+    const mockedRouter = (await import("./ballroomRouter")).default;
+    const errorApp = express();
+    errorApp.use(express.json());
+    errorApp.use("/ballroom", mockedRouter);
+
+    const res = await request(errorApp)
+      .post("/ballroom/calculate-partners")
+      .send(payload);
+
+    expect(res.status).toBe(500);
+    expect(res.body).toEqual({ error: "Internal server error" });
+
+    jest.dontMock("./ballroomHandlers");
+  });
 });

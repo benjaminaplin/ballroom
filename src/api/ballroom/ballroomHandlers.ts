@@ -59,11 +59,11 @@ export const calculatePartners = (data: BallroomData) => {
     const matches = matchLeadersAndFollowers(data.leader_knowledge, data.follower_knowledge);
     const { partnerMap, avgDancePartners}  = calculateAvgDancePartners(matches)
     const dancesDanced = randomlySelectMatches(matches, numPossibleDances);
-    const serializedPartnerMap = serializPartnereMap(partnerMap)
+    const serializedPartnerMap = serializePartnerMap(partnerMap)
     return { numDancesDanced: dancesDanced.length, avgDancePartners, partnerMap: serializedPartnerMap }
 }
 
-export const serializPartnereMap = (
+export const serializePartnerMap = (
     partnerMap: Record<string, Set<string>>
 ) => Object.fromEntries(
         Object.entries(partnerMap).map(([key, value]) => [key, Array.from(value)])
