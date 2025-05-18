@@ -4,7 +4,7 @@
 
 1. **Clone the repository**
    ```sh
-   git clone <your-repo-url>
+   git clone git@github.com:benjaminaplin/ballroom.git
    cd basic-typescript-server
    ```
 
