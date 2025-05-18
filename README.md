@@ -73,20 +73,32 @@
 
 **Response Example:**
 ```json
-{
-  "avgLeaderPartners": 2,
-  "avgFollowerPartners": 2,
-  "leaderPartners": {
-    "1": ["A", "B", "C"],
-    "2": ["A"],
-    "3": ["A", "C"]
-  },
-  "followerPartners": {
-    "A": ["1", "2", "3"],
-    "B": ["1"],
-    "C": ["1", "3"]
-  }
-}
+ "data": {
+        "numDancesDanced": 24,
+        "avgDancePartners": 2,
+        "partnerMap": {
+            "1": [
+                "A",
+                "C"
+            ],
+            "2": [
+                "A"
+            ],
+            "3": [
+                "A",
+                "C"
+            ],
+            "A": [
+                "1",
+                "2",
+                "3"
+            ],
+            "C": [
+                "1",
+                "3"
+            ]
+        }
+    }
 ```
 
 ---
