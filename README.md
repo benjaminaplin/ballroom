@@ -1,11 +1,11 @@
-# Basic TypeScript Ballroom API
+# TypeScript Ballroom API
 
 ## Setup Instructions
 
 1. **Clone the repository**
    ```sh
    git clone git@github.com:benjaminaplin/ballroom.git
-   cd basic-typescript-server
+   cd ballroom
    ```
 
 2. **Install dependencies**
@@ -13,22 +13,19 @@
    npm install
    ```
 
-3. **Configure environment (optional)**
-   - If you use environment variables, create a `.env` file in the root directory.
-
-4. **Run the development server**
+3. **Run the development server**
    ```sh
    npm run dev
    ```
    The server will start on [http://localhost:3000](http://localhost:3000).
 
-5. **Build and run with Docker**
+4. **Build and run with Docker**
    ```sh
    docker build -t ballroom-api .
    docker run -p 3000:3000 ballroom-api
    ```
 
-6. **Run tests**
+5. **Run tests**
    ```sh
    npm test
    ```
