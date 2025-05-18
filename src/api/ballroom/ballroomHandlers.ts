@@ -50,7 +50,7 @@ export const calculateAvgDancePartners = (matches: Match[]) => {
     });
     
     const totalPossiblePartners = Object.values(partnerMap).reduce((sum, partners) => sum + partners.size, 0);
-    return { partnerMap, avgDancePartners: totalPossiblePartners / Object.keys(partnerMap).length};
+    return { partnerMap, avgDancePartners: (totalPossiblePartners / Object.keys(partnerMap).length) || 0 };
 };
 
 

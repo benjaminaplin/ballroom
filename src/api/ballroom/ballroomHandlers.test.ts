@@ -71,13 +71,13 @@ describe("calculatePartners", () => {
           leader_knowledge: { l1: ["waltz"] },
           follower_knowledge: { f1: ["tango"] },
           dance_duration_minutes: 10,
-          total_leaders: 0,
-          total_followers: 0,
-          dance_styles: []
+          total_leaders: 1,
+          total_followers: 1,
+          dance_styles: ["waltz", "tango"] // Provide at least the dances referenced above
         };
         const result = calculatePartners(noMatchData);
         expect(result.numDancesDanced).toBe(0);
-        expect(result.avgDancePartners).toBeNaN();
+        expect(result.avgDancePartners).toBe(0);
     });
 });
 
@@ -135,7 +135,7 @@ describe("calculateAvgDancePartners", () => {
     });
 
     it("should return 0 for empty matches", () => {
-        expect(calculateAvgDancePartners([])).toStrictEqual({"avgDancePartners": NaN, "partnerMap": {}});
+        expect(calculateAvgDancePartners([])).toStrictEqual({"avgDancePartners": 0, "partnerMap": {}});
     });
 
     it("should handle one match", () => {
