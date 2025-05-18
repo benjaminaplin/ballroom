@@ -70,12 +70,14 @@
 
 **Response Example:**
 ```json
- "data": {
+ {
+    "data": {
         "numDancesDanced": 24,
         "avgDancePartners": 2,
         "partnerMap": {
             "1": [
                 "A",
+                "B",
                 "C"
             ],
             "2": [
@@ -90,12 +92,16 @@
                 "2",
                 "3"
             ],
+            "B": [
+                "1"
+            ],
             "C": [
                 "1",
                 "3"
             ]
         }
     }
+}
 ```
 
 ---
