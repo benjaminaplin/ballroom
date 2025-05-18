@@ -40,7 +40,6 @@ const randomlySelectMatches = (matches: Match[], numPossibleDances: number) => {
 }
 
 export const calculateAvgDancePartners = (matches: Match[]) => {
-
     const partnerMap: Record<string, Set<string>> = {};
 
     matches.forEach(({ leader, follower }) => {
@@ -50,22 +49,25 @@ export const calculateAvgDancePartners = (matches: Match[]) => {
         partnerMap[follower].add(leader);
     });
     
-    console.log("🚀 ~ calculateAvgDancePartners ~ partnerMap:", partnerMap)
-    console.log("🚀 ~ calculateAvgDancePartners ~ Object.keys(partnerMap):", Object.keys(partnerMap))
-    console.log("🚀 ~ calculateAvgDancePartners ~ Object.values(partnerMap):", Object.values(partnerMap))
-
     const totalPossiblePartners = Object.values(partnerMap).reduce((sum, partners) => sum + partners.size, 0);
-    console.log("🚀 ~ calculateAvgDancePartners ~ totalPossiblePartners:", totalPossiblePartners)
-    const avgPartners = totalPossiblePartners / Object.keys(partnerMap).length;
-    return avgPartners;
+    return { partnerMap, avgDancePartners: totalPossiblePartners / Object.keys(partnerMap).length};
 };
 
 
 export const calculatePartners = (data: BallroomData) => {
     const numPossibleDances = Math.floor(data.dance_duration_minutes / AVG_DANCE_TIME)
-    console.log("🚀 ~ calculatePartners ~ numPossibleDances:", numPossibleDances)
     const matches = matchLeadersAndFollowers(data.leader_knowledge, data.follower_knowledge);
-    const avgDancePartners = calculateAvgDancePartners(matches)
+    const { partnerMap, avgDancePartners}  = calculateAvgDancePartners(matches)
     const dancesDanced = randomlySelectMatches(matches, numPossibleDances);
-    return {numDancesDanced: dancesDanced.length, avgDancePartners}
+    const serializedPartnerMap = serializPartnereMap(partnerMap)
+    return { numDancesDanced: dancesDanced.length, avgDancePartners, partnerMap: serializedPartnerMap }
+}
+
+export const serializPartnereMap = (
+    partnerMap: Record<string, Set<string>>
+) => {
+    const jsonReady = Object.fromEntries(
+        Object.entries(partnerMap).map(([key, value]) => [key, Array.from(value)])
+    );
+    return jsonReady
 }

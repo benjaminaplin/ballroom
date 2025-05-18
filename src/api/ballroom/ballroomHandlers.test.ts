@@ -35,40 +35,26 @@ describe("matchLeadersAndFollowers", () => {
 });
 
 describe("calculatePartners", () => {
-    // const data: BallroomData = {
-    //   leader_knowledge,
-    //   follower_knowledge,
-    //   dance_duration_minutes: 15,
-    //   total_leaders: 0,
-    //   total_followers: 0,
-    //   dance_styles: []
-    // };
-
     const data: BallroomData = {
-        "total_leaders": 3,
-        "total_followers": 3,
-        "dance_styles": ["Waltz", "Tango", "Foxtrot"],
-        "leader_knowledge": {
-            "1": ["Waltz", "Tango"],
-            "2": ["Foxtrot"],
-            "3": ["Waltz", "Foxtrot"]
+        total_leaders: 3,
+        total_followers: 3,
+        dance_styles: ["Waltz", "Tango", "Foxtrot"],
+        leader_knowledge: {
+            1: ["Waltz", "Tango"],
+            2: ["Foxtrot"],
+            3: ["Waltz", "Foxtrot"]
         },
-        "follower_knowledge": {
-            "A": ["Waltz", "Tango", "Foxtrot"],
-            "B": ["Tango"],
-            "C": ["Waltz"]
+        follower_knowledge: {
+            A: ["Waltz", "Tango", "Foxtrot"],
+            B: ["Tango"],
+            C: ["Waltz"]
         },
-        "dance_duration_minutes": 120
-        }
+        dance_duration_minutes: 120
+    }
 
-    it.only("should calculate the correct number of dances and average partners", () => {
+    it("should calculate the correct number of dances and average partners", () => {
         const result = calculatePartners(data);
-        console.log("🚀 ~ it.only ~ result:", result)
-        // 15 / 5 = 3 possible dances
-        // expect(result.numDancesDanced).toBeLessThanOrEqual(3);
         expect(result.numDancesDanced).toBeLessThanOrEqual(24);
-        // There are 4 unique matches, so avg partners should be >= 1
-        // expect(result.avgDancePartners).toBeGreaterThanOrEqual(1);
         expect(result.avgDancePartners).toEqual(2);
     });
 

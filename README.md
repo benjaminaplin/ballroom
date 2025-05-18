@@ -48,17 +48,7 @@
 
 ## Example API Usage
 
-### 1. Get Hello World
-**Endpoint:** `GET /`
-
-**Response:**
-```json
-Hello, Woroiuboiuld!
-```
-
----
-
-### 2. Ballroom Matching Example
+### Ballroom Matching Example
 **Endpoint:** `POST /api/ballroom/calculate-partners`
 
 **Request Body:**
