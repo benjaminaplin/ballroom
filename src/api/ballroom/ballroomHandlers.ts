@@ -55,6 +55,7 @@ export const calculateAvgDancePartners = (matches: Match[]) => {
 
 
 export const calculatePartners = (data: BallroomData) => {
+    console.log("🚀 ~ calculatePartners ~ data:", data)
     const numPossibleDances = Math.floor(data.dance_duration_minutes / AVG_DANCE_TIME)
     const matches = matchLeadersAndFollowers(data.leader_knowledge, data.follower_knowledge);
     const { partnerMap, avgDancePartners}  = calculateAvgDancePartners(matches)
@@ -66,8 +67,7 @@ export const calculatePartners = (data: BallroomData) => {
 export const serializPartnereMap = (
     partnerMap: Record<string, Set<string>>
 ) => {
-    const jsonReady = Object.fromEntries(
+    return Object.fromEntries(
         Object.entries(partnerMap).map(([key, value]) => [key, Array.from(value)])
     );
-    return jsonReady
 }

@@ -1,4 +1,4 @@
-import { matchLeadersAndFollowers, calculatePartners , calculateAvgDancePartners} from "./ballroomHandlers";
+import { matchLeadersAndFollowers, calculatePartners, calculateAvgDancePartners, randomlySelectMatches } from "./ballroomHandlers";
 import { BallroomData } from "../../types/ballroom";
 
 // Mock data for tests
@@ -90,7 +90,7 @@ describe("randomlySelectMatches", () => {
 
     it("should select up to numPossibleDances unique matches", () => {
         const numPossibleDances = 2;
-        const selected = (require("./ballroomHandlers") as any).randomlySelectMatches(matches, numPossibleDances);
+        const selected = randomlySelectMatches(matches, numPossibleDances);
         expect(selected.length).toBeLessThanOrEqual(numPossibleDances);
         // All selected matches should be from the original matches
         selected.forEach((match: any) => {
@@ -100,7 +100,7 @@ describe("randomlySelectMatches", () => {
 
     it("should return all matches if numPossibleDances >= matches.length", () => {
         const numPossibleDances = 10;
-        const selected = (require("./ballroomHandlers") as any).randomlySelectMatches(matches, numPossibleDances);
+        const selected = randomlySelectMatches(matches, numPossibleDances);
         expect(selected.length).toBe(matches.length);
         // All matches should be present
         matches.forEach(match => {
@@ -109,12 +109,12 @@ describe("randomlySelectMatches", () => {
     });
 
     it("should return empty array if matches is empty", () => {
-        const selected = (require("./ballroomHandlers") as any).randomlySelectMatches([], 3);
+        const selected = randomlySelectMatches([], 3);
         expect(selected).toEqual([]);
     });
 
     it("should return empty array if numPossibleDances is 0", () => {
-        const selected = (require("./ballroomHandlers") as any).randomlySelectMatches(matches, 0);
+        const selected = randomlySelectMatches(matches, 0);
         expect(selected).toEqual([]);
     });
 });
